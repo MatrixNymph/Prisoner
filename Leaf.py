@@ -27,9 +27,10 @@ class Leaf:
         # Split randomly
         else:
             dir = getrandbits(1)
-       
-        split = randint(min_leaf_size, max)
 
+        max = height if dir == 0 else width
+        split = randint(min_leaf_size, max)
+        
         if dir == 0:
             self.leftChild = Leaf(self.x, self.y, self.width, split)
             self.rightChild = Leaf(self.x, self.y + split, self.width, self.height - split)
