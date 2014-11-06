@@ -3,10 +3,12 @@
 from random import getrandbits
 
 class Leaf:
-    def __init__(self, _x, _y, width, height):
+    def __init__(self, _x, _y, width, height, min):
         self.x = _x
         self.y = _y
         self.size = [width, height]
+
+        self.min_leaf_size = min
 
         self.leftChild = None
         self.rightChild = None
@@ -18,15 +20,17 @@ class Leaf:
         
         # If width > 25% larger than height, split vertically
         if self.width > (1.25 * height):
-            split = 1
+            dir = 1
         # If height > 25% larger than width, split horizontally
         elif self.height > (1.25 * width):
-            split = 0
+            dir = 0
         # Split randomly
         else:
-            split = getrandbits(1)
+            dir = getrandbits(1)
+       
+        split = randint(min_leaf_size, max)
 
-        if split == 0:
+        if dir == 0:
             self.leftChild = Leaf(self.x, self.y, self.width, split)
             self.rightChild = Leaf(self.x, self.y + split, self.width, self.height - split)
         else:
