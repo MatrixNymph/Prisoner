@@ -2,6 +2,7 @@
 
 from random import getrandbits
 import libtcodpy as libtcod
+import os.path
 
 class CAgen:
     def __init__(self, x, y):
@@ -58,7 +59,7 @@ class CAgen:
         
     def render(self):
         libtcod.console_set_default_foreground(0, libtcod.white)
-        libtcod.console_set_custom_font('arial12x12.png', libtcod.FONT_TYPE_GREYSCALE | libtcod.FONT_LAYOUT_TCOD)
+        libtcod.console_set_custom_font(os.path.join('resources', 'fonts', 'arial12x12.png'), libtcod.FONT_TYPE_GREYSCALE | libtcod.FONT_LAYOUT_TCOD)
         libtcod.console_init_root(self.x, self.y, 'CAgen', False)
 
         while not libtcod.console_is_window_closed():
